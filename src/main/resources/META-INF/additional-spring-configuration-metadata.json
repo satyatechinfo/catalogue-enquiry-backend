@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "app.cors.allowed-origins",
+    "type": "java.lang.String",
+    "description": "A description for 'app.cors.allowed-origins'"
+  },
+  {
+    "name": "app.seed.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'app.seed.enabled'"
+  },
+  {
+    "name": "app.admin.username",
+    "type": "java.lang.String",
+    "description": "A description for 'app.admin.username'"
+  },
+  {
+    "name": "app.admin.password",
+    "type": "java.lang.String",
+    "description": "A description for 'app.admin.password'"
+  }
+]}

@@ -1,0 +1,144 @@
+{
+  "categories": [
+    { "name": "Drinkware", "slug": "drinkware" },
+    { "name": "Apparel", "slug": "apparel" },
+    { "name": "Work Essentials", "slug": "work-essentials" },
+    { "name": "Wellness", "slug": "wellness" }
+  ],
+  "occasions": [
+    { "name": "Diwali", "slug": "diwali", "description": "Festive hampers and keepsakes to thank teams, partners and clients." },
+    { "name": "New Year", "slug": "new-year", "description": "Start the year with useful, beautifully presented gifts." },
+    { "name": "Employee Onboarding", "slug": "employee-onboarding", "description": "Welcome kits that make new joiners feel part of the team on day one." },
+    { "name": "Work Anniversary", "slug": "work-anniversary", "description": "Milestone gifts that recognise loyalty and long service." },
+    { "name": "Client Appreciation", "slug": "client-appreciation", "description": "Premium gifts that strengthen relationships and say thank you." },
+    { "name": "Events & Conferences", "slug": "events-conferences", "description": "Branded giveaways and delegate kits people actually keep." }
+  ],
+  "products": [
+    {
+      "sku": "TG-DRK-001", "name": "Insulated Steel Bottle", "slug": "insulated-steel-bottle", "category": "drinkware",
+      "image": "/images/products/insulated-steel-bottle.svg", "featured": true, "displayOrder": 1,
+      "shortDescription": "Double-wall vacuum bottle that keeps drinks cold for 24 hours and hot for 12.",
+      "description": "A 500 ml double-wall stainless steel bottle with a leak-proof lid and powder-coated matte finish. Its smooth surface takes laser engraving and logo printing beautifully, making it a daily reminder of your brand.",
+      "minPrice": 450, "maxPrice": 850, "minOrderQuantity": 50,
+      "occasions": ["employee-onboarding", "events-conferences", "new-year"],
+      "customisationOptions": ["Laser engraving", "Logo printing", "Colour matching", "Custom gift box"]
+    },
+    {
+      "sku": "TG-DRK-002", "name": "Artisan Ceramic Mug Set", "slug": "artisan-ceramic-mug-set", "category": "drinkware",
+      "image": "/images/products/artisan-ceramic-mug-set.svg", "featured": false, "displayOrder": 2,
+      "shortDescription": "Set of two hand-glazed ceramic mugs presented in a kraft gift box.",
+      "description": "Two 300 ml stoneware mugs with a reactive green glaze, each one subtly unique. Packed in a recycled kraft box with a personalised message card.",
+      "minPrice": 400, "maxPrice": 900, "minOrderQuantity": 25,
+      "occasions": ["work-anniversary", "diwali", "client-appreciation"],
+      "customisationOptions": ["Logo printing", "Personalised message card", "Custom gift box"]
+    },
+    {
+      "sku": "TG-DRK-003", "name": "Copper Bottle Gift Set", "slug": "copper-bottle-gift-set", "category": "drinkware",
+      "image": "/images/products/copper-bottle-gift-set.svg", "featured": true, "displayOrder": 3,
+      "shortDescription": "Pure copper bottle with two matching tumblers in a premium presentation box.",
+      "description": "A 900 ml hammered copper bottle with two 200 ml tumblers, finished with a lacquer coating. A traditional wellness gift that feels premium and festive.",
+      "minPrice": 1200, "maxPrice": 2200, "minOrderQuantity": 20,
+      "occasions": ["diwali", "client-appreciation", "work-anniversary"],
+      "customisationOptions": ["Laser engraving", "Custom gift box", "Personalised message card"]
+    },
+    {
+      "sku": "TG-APP-001", "name": "Organic Cotton Polo", "slug": "organic-cotton-polo", "category": "apparel",
+      "image": "/images/products/organic-cotton-polo.svg", "featured": true, "displayOrder": 4,
+      "shortDescription": "Soft 220 GSM organic cotton polo with a tailored fit and reinforced collar.",
+      "description": "A breathable organic cotton piqué polo available in sizes XS to 3XL and a range of earthy shades. Ideal as team uniform or onboarding apparel.",
+      "minPrice": 600, "maxPrice": 1100, "minOrderQuantity": 30,
+      "occasions": ["employee-onboarding", "events-conferences", "work-anniversary"],
+      "customisationOptions": ["Embroidery", "Logo printing", "Colour matching", "Size-wise packing"]
+    },
+    {
+      "sku": "TG-APP-002", "name": "Premium Fleece Zip Jacket", "slug": "premium-fleece-zip-jacket", "category": "apparel",
+      "image": "/images/products/premium-fleece-zip-jacket.svg", "featured": false, "displayOrder": 5,
+      "shortDescription": "Warm, lightweight recycled-fleece jacket with zipped pockets and a clean finish.",
+      "description": "Made from recycled polyester fleece with a brushed interior, a full-length zip and two zipped pockets. A premium gift for the colder months.",
+      "minPrice": 1800, "maxPrice": 3200, "minOrderQuantity": 25,
+      "occasions": ["new-year", "client-appreciation", "work-anniversary"],
+      "customisationOptions": ["Embroidery", "Colour matching", "Custom gift box"]
+    },
+    {
+      "sku": "TG-APP-003", "name": "Embroidered Cotton Cap", "slug": "embroidered-cotton-cap", "category": "apparel",
+      "image": "/images/products/embroidered-cotton-cap.svg", "featured": false, "displayOrder": 6,
+      "shortDescription": "Six-panel brushed cotton cap with an adjustable strap and embroidered logo.",
+      "description": "A lightweight six-panel cap with a curved brim and metal strap clasp. A budget-friendly branded giveaway for events and field teams.",
+      "minPrice": 250, "maxPrice": 450, "minOrderQuantity": 100,
+      "occasions": ["events-conferences", "employee-onboarding"],
+      "customisationOptions": ["Embroidery", "Logo printing", "Colour matching"]
+    },
+    {
+      "sku": "TG-WRK-001", "name": "Leather Executive Notebook", "slug": "leather-executive-notebook", "category": "work-essentials",
+      "image": "/images/products/leather-executive-notebook.svg", "featured": true, "displayOrder": 7,
+      "shortDescription": "A5 vegan-leather notebook with 160 pages of thick, ink-friendly paper.",
+      "description": "A5 hardbound notebook with a vegan leather cover, ribbon marker, elastic closure and pen loop. Lays flat for comfortable writing.",
+      "minPrice": 700, "maxPrice": 1400, "minOrderQuantity": 25,
+      "occasions": ["employee-onboarding", "new-year", "events-conferences"],
+      "customisationOptions": ["Debossing", "Foil stamping", "Logo printing", "Custom gift box"]
+    },
+    {
+      "sku": "TG-WRK-002", "name": "Metal Pen & Cardholder Set", "slug": "metal-pen-and-cardholder-set", "category": "work-essentials",
+      "image": "/images/products/metal-pen-and-cardholder-set.svg", "featured": false, "displayOrder": 8,
+      "shortDescription": "Brushed-metal roller pen with a slim business card holder in a gift case.",
+      "description": "A weighted brushed-metal pen and matching card holder, presented in a magnetic-close gift case. A refined desk essential for leadership gifting.",
+      "minPrice": 900, "maxPrice": 1800, "minOrderQuantity": 20,
+      "occasions": ["client-appreciation", "work-anniversary", "new-year"],
+      "customisationOptions": ["Laser engraving", "Custom gift box", "Personalised message card"]
+    },
+    {
+      "sku": "TG-WRK-003", "name": "Wireless Charging Desk Pad", "slug": "wireless-charging-desk-pad", "category": "work-essentials",
+      "image": "/images/products/wireless-charging-desk-pad.svg", "featured": false, "displayOrder": 9,
+      "shortDescription": "Vegan-leather desk mat with a built-in 15W wireless charger.",
+      "description": "An oversized desk mat with a built-in Qi 15W wireless charging zone and a water-resistant, easy-clean surface. Combines utility with a polished desk presence.",
+      "minPrice": 1500, "maxPrice": 2800, "minOrderQuantity": 15,
+      "occasions": ["employee-onboarding", "client-appreciation", "diwali"],
+      "customisationOptions": ["Logo printing", "Debossing", "Custom gift box"]
+    },
+    {
+      "sku": "TG-WRK-004", "name": "Anti-Theft Laptop Backpack", "slug": "anti-theft-laptop-backpack", "category": "work-essentials",
+      "image": "/images/products/anti-theft-laptop-backpack.svg", "featured": false, "displayOrder": 10,
+      "shortDescription": "Water-resistant 25 L backpack with a hidden zip, USB port and padded laptop sleeve.",
+      "description": "A 25 L commuter backpack that fits laptops up to 16 inches, with a concealed back pocket, external USB charging port and ergonomic padded straps.",
+      "minPrice": 2200, "maxPrice": 3800, "minOrderQuantity": 15,
+      "occasions": ["employee-onboarding", "work-anniversary", "events-conferences"],
+      "customisationOptions": ["Logo printing", "Embroidery", "Custom gift box"]
+    },
+    {
+      "sku": "TG-WEL-001", "name": "Aroma Diffuser & Candle Hamper", "slug": "aroma-diffuser-and-candle-hamper", "category": "wellness",
+      "image": "/images/products/aroma-diffuser-and-candle-hamper.svg", "featured": true, "displayOrder": 11,
+      "shortDescription": "Reed diffuser and soy candle duo in calming sandalwood, packed in a wooden tray.",
+      "description": "A hand-poured soy candle and a reed diffuser in a soothing sandalwood and tea-leaf blend, arranged in a natural wooden tray with shredded paper filler.",
+      "minPrice": 1400, "maxPrice": 2600, "minOrderQuantity": 20,
+      "occasions": ["diwali", "client-appreciation", "new-year"],
+      "customisationOptions": ["Custom label", "Personalised message card", "Custom gift box", "Gift wrapping"]
+    },
+    {
+      "sku": "TG-WEL-002", "name": "Herbal Tea & Honey Hamper", "slug": "herbal-tea-and-honey-hamper", "category": "wellness",
+      "image": "/images/products/herbal-tea-and-honey-hamper.svg", "featured": false, "displayOrder": 12,
+      "shortDescription": "Assorted herbal teas, raw forest honey and a bamboo stirrer in a reusable box.",
+      "description": "Three loose-leaf herbal blends, a jar of raw forest honey and a bamboo honey dipper in a reusable keepsake box with a ribbon finish.",
+      "minPrice": 800, "maxPrice": 1600, "minOrderQuantity": 25,
+      "occasions": ["diwali", "work-anniversary", "new-year"],
+      "customisationOptions": ["Custom label", "Personalised message card", "Gift wrapping"]
+    },
+    {
+      "sku": "TG-WEL-003", "name": "Yoga Mat & Strap Set", "slug": "yoga-mat-and-strap-set", "category": "wellness",
+      "image": "/images/products/yoga-mat-and-strap-set.svg", "featured": false, "displayOrder": 13,
+      "shortDescription": "6 mm eco-friendly TPE yoga mat with a carry strap and cotton storage bag.",
+      "description": "A non-slip, 6 mm TPE yoga mat with alignment lines, a cotton carry strap and a drawstring storage bag. Supports your wellness-at-work programmes.",
+      "minPrice": 1200, "maxPrice": 2000, "minOrderQuantity": 20,
+      "occasions": ["employee-onboarding", "work-anniversary", "events-conferences"],
+      "customisationOptions": ["Logo printing", "Custom packaging", "Colour matching"]
+    },
+    {
+      "sku": "TG-WEL-004", "name": "Signature Wellness Hamper", "slug": "signature-wellness-hamper", "category": "wellness",
+      "image": "/images/products/signature-wellness-hamper.svg", "featured": true, "displayOrder": 14,
+      "shortDescription": "Our flagship hamper with bath salts, candle, tea, dry fruits and a bamboo journal.",
+      "description": "A curated hamper in a handwoven basket: Himalayan bath salts, a soy candle, premium tea, roasted nuts and a bamboo-cover journal, finished with a personalised note.",
+      "minPrice": 3500, "maxPrice": 6500, "minOrderQuantity": 10,
+      "occasions": ["diwali", "client-appreciation", "new-year", "work-anniversary"],
+      "customisationOptions": ["Personalised message card", "Custom gift box", "Logo printing", "Gift wrapping", "Custom label"]
+    }
+  ]
+}
