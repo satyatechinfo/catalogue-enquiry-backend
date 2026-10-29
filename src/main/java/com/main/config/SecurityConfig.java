@@ -30,131 +30,88 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private static final Logger log =
-            LoggerFactory.getLogger(SecurityConfig.class);
+	private static final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
 
-    @Bean
-    SecurityFilterChain filterChain(
-            HttpSecurity http,
-            CorsConfigurationSource corsConfigurationSource
-    ) throws Exception {
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http, CorsConfigurationSource corsConfigurationSource)
+			throws Exception {
 
-        http
-            .cors(cors ->
-                cors.configurationSource(corsConfigurationSource)
-            )
-            .csrf(AbstractHttpConfigurer::disable)
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(
-                    SessionCreationPolicy.STATELESS
-                )
-            )
-            .authorizeHttpRequests(auth -> auth
+		http.cors(cors -> cors.configurationSource(corsConfigurationSource)).csrf(AbstractHttpConfigurer::disable)
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeHttpRequests(auth -> auth
 
-                .requestMatchers(HttpMethod.OPTIONS, "/**")
-                .permitAll()
+						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                .requestMatchers("/", "/error")
-                .permitAll()
+						.requestMatchers("/", "/error").permitAll()
 
-                .requestMatchers(
-                    HttpMethod.GET,
-                    "/api/products",
-                    "/api/products/**",
-                    "/api/categories",
-                    "/api/occasions"
-                ).permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/products", "/api/products/**", "/api/categories",
+								"/api/occasions")
+						.permitAll()
 
-                .requestMatchers(
-                    HttpMethod.POST,
-                    "/api/enquiries"
-                ).permitAll()
+						.requestMatchers(HttpMethod.POST, "/api/enquiries").permitAll()
 
-                .requestMatchers(
-                    HttpMethod.GET,
-                    "/actuator/health",
-                    "/actuator/health/**"
-                ).permitAll()
+						.requestMatchers(HttpMethod.GET, "/actuator/health", "/actuator/health/**").permitAll()
 
-                .requestMatchers("/api/admin/**")
-                .hasRole("ADMIN")
+						.requestMatchers("/api/admin/**").hasRole("ADMIN")
 
-                .anyRequest().denyAll()
-            )
-            .httpBasic(Customizer.withDefaults());
+						.anyRequest().denyAll())
+				.httpBasic(Customizer.withDefaults());
 
-        return http.build();
-    }
+		return http.build();
+	}
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    UserDetailsService userDetailsService(
-            PasswordEncoder passwordEncoder,
-            @Value("${app.admin.username:admin}") String username,
-            @Value("${app.admin.password:}") String password
-    ) {
-        InMemoryUserDetailsManager manager =
-                new InMemoryUserDetailsManager();
+	@Bean
+	UserDetailsService userDetailsService(PasswordEncoder passwordEncoder,
+			@Value("${app.admin.username:admin}") String username, @Value("${app.admin.password:}") String password) {
+		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 
-        if (StringUtils.hasText(password)) {
-            manager.createUser(
-                User.withUsername(username)
-                    .password(
-                        passwordEncoder.encode(password.trim())
-                    )
-                    .roles("ADMIN")
-                    .build()
-            );
+		if (StringUtils.hasText(password)) {
+			manager.createUser(User.withUsername(username).password(passwordEncoder.encode(password.trim()))
+					.roles("ADMIN").build());
 
-            log.info("Admin endpoints enabled for user '{}'", username);
-        } else {
-            log.warn(
-                "app.admin.password is not set - admin endpoints are disabled"
-            );
-        }
+			log.info("Admin endpoints enabled for user '{}'", username);
+		} else {
+			log.warn("app.admin.password is not set - admin endpoints are disabled");
+		}
 
-        return manager;
-    }
+		return manager;
+	}
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource(
-            @Value("${app.cors.allowed-origins}") String allowedOrigins
-    ) {
-        List<String> origins = Arrays.stream(
-                allowedOrigins.split(",")
-            )
-            .map(String::trim)
-            .filter(StringUtils::hasText)
-            .toList();
+	@Bean
+	CorsConfigurationSource corsConfigurationSource(
+	        @Value("${app.cors.allowed-origins}") String allowedOrigins,
+	        @Value("${app.cors.allowed-origin-patterns:}") String allowedOriginPatterns) {
 
-        CorsConfiguration config = new CorsConfiguration();
+	    List<String> origins = Arrays.stream(allowedOrigins.split(","))
+	            .map(String::trim)
+	            .map(o -> o.endsWith("/") ? o.substring(0, o.length() - 1) : o) // strip trailing slash
+	            .filter(StringUtils::hasText)
+	            .toList();
 
-        config.setAllowedOrigins(origins);
-        config.setAllowedMethods(
-            List.of(
-                "GET", "POST", "PUT", "PATCH",
-                "DELETE", "OPTIONS"
-            )
-        );
-        config.setAllowedHeaders(
-            List.of(
-                "Content-Type", "Authorization",
-                "Accept", "X-Requested-With"
-            )
-        );
-        config.setMaxAge(3600L);
+	    List<String> patterns = Arrays.stream(allowedOriginPatterns.split(","))
+	            .map(String::trim)
+	            .filter(StringUtils::hasText)
+	            .toList();
 
-        log.info("CORS allowed origins: {}", origins);
+	    CorsConfiguration config = new CorsConfiguration();
+	    config.setAllowedOrigins(origins);
+	    if (!patterns.isEmpty()) {
+	        config.setAllowedOriginPatterns(patterns);
+	    }
+	    config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+	    config.setAllowedHeaders(List.of("Content-Type", "Authorization", "Accept", "X-Requested-With"));
+	    config.setMaxAge(3600L);
 
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
+	    log.info("CORS allowed origins: {}", origins);
+	    log.info("CORS allowed origin patterns: {}", patterns);
 
-        source.registerCorsConfiguration("/api/**", config);
-
-        return source;
-    }
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/api/**", config);
+	    return source;
+	}
 }
