@@ -83,35 +83,33 @@ public class SecurityConfig {
 	}
 
 	@Bean
-	CorsConfigurationSource corsConfigurationSource(
-	        @Value("${app.cors.allowed-origins}") String allowedOrigins,
-	        @Value("${app.cors.allowed-origin-patterns:}") String allowedOriginPatterns) {
+CorsConfigurationSource corsConfigurationSource(
+        @Value("${app.cors.allowed-origins:}") String allowedOrigins) {
 
-	    List<String> origins = Arrays.stream(allowedOrigins.split(","))
-	            .map(String::trim)
-	            .map(o -> o.endsWith("/") ? o.substring(0, o.length() - 1) : o) // strip trailing slash
-	            .filter(StringUtils::hasText)
-	            .toList();
+    List<String> origins = new java.util.ArrayList<>(
+            Arrays.stream(allowedOrigins.split(","))
+                    .map(String::trim)
+                    .map(o -> o.endsWith("/") ? o.substring(0, o.length() - 1) : o)
+                    .filter(StringUtils::hasText)
+                    .toList());
 
-	    List<String> patterns = Arrays.stream(allowedOriginPatterns.split(","))
-	            .map(String::trim)
-	            .filter(StringUtils::hasText)
-	            .toList();
+    // Always allow the production frontend, even if the env var is stale
+    origins.add("https://catalogue-enquiry-customer-frontend.vercel.app");
 
-	    CorsConfiguration config = new CorsConfiguration();
-	    config.setAllowedOrigins(origins);
-	    if (!patterns.isEmpty()) {
-	        config.setAllowedOriginPatterns(patterns);
-	    }
-	    config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-	    config.setAllowedHeaders(List.of("Content-Type", "Authorization", "Accept", "X-Requested-With"));
-	    config.setMaxAge(3600L);
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowedOrigins(origins.stream().distinct().toList());
+    config.setAllowedOriginPatterns(List.of(
+            "https://catalogue-enquiry-*.vercel.app",
+            "http://localhost:*"));
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+    config.setAllowedHeaders(List.of("*"));
+    config.setMaxAge(3600L);
 
-	    log.info("CORS allowed origins: {}", origins);
-	    log.info("CORS allowed origin patterns: {}", patterns);
+    log.info("CORS allowed origins: {}", config.getAllowedOrigins());
+    log.info("CORS allowed origin patterns: {}", config.getAllowedOriginPatterns());
 
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/api/**", config);
-	    return source;
-	}
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/api/**", config);
+    return source;
+}
 }
